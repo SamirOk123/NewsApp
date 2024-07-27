@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/colors.dart';
+import 'package:news_app/core/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
+    required this.controller,
   });
 
   final String hintText;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         border: InputBorder.none,
         filled: true,

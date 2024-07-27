@@ -1,11 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/colors.dart';
-import 'package:news_app/views/login_screen.dart';
-import 'package:news_app/views/news_screen.dart';
-import 'package:news_app/views/signup_screen.dart';
+import 'package:news_app/application/news_provider.dart';
+import 'package:news_app/core/colors.dart';
+import 'package:news_app/domain/di/injectable.dart';
+import 'package:news_app/presentation/news_screen.dart';
+import 'package:news_app/presentation/signup_screen.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await configureInjection();
   runApp(const MyApp());
 }
 
@@ -19,27 +26,49 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
-          title: 'News App',
-          theme: ThemeData(
-            scaffoldBackgroundColor: kMistBlue,
-            fontFamily: "Poppins",
-            useMaterial3: false,
-            textTheme: TextTheme(
-              displayLarge: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w700,
-                  height: 21.sp / 14.sp,
-                  color: Colors.black),
-              bodyLarge: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  height: 21.sp / 14.sp,
-                  color: Colors.black),
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) => getIt<NewsProvider>(),
             ),
+          ],
+          child: MaterialApp(
+            title: 'News App',
+            theme: ThemeData(
+              scaffoldBackgroundColor: kMistBlue,
+              fontFamily: "Poppins",
+              useMaterial3: false,
+              textTheme: TextTheme(
+                displayLarge: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w700,
+                    height: 21.sp / 14.sp,
+                    color: Colors.black),
+                bodyLarge: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    height: 21.sp / 14.sp,
+                    color: Colors.black),
+              ),
+            ),
+            home: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Scaffold(
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return const NewsScreen();
+                } else {
+                  return SignupScreen();
+                }
+              },
+            ),
+            debugShowCheckedModeBanner: false,
           ),
-          home: const SignupScreen(),
-          debugShowCheckedModeBanner: false,
         );
       },
     );

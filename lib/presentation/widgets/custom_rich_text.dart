@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/colors.dart';
+import 'package:news_app/core/colors.dart';
 
 class CustomRichText extends StatelessWidget {
   const CustomRichText({
