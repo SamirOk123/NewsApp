@@ -18,9 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -30,9 +28,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -42,9 +38,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -55,9 +49,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -67,9 +59,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -79,9 +69,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
@@ -108,145 +96,6 @@ class _$AuthFailureCopyWithImpl<$Res, $Val extends AuthFailure>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$InvalidEmailImplCopyWith<$Res> {
-  factory _$$InvalidEmailImplCopyWith(
-          _$InvalidEmailImpl value, $Res Function(_$InvalidEmailImpl) then) =
-      __$$InvalidEmailImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InvalidEmailImplCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$InvalidEmailImpl>
-    implements _$$InvalidEmailImplCopyWith<$Res> {
-  __$$InvalidEmailImplCopyWithImpl(
-      _$InvalidEmailImpl _value, $Res Function(_$InvalidEmailImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InvalidEmailImpl extends InvalidEmail {
-  const _$InvalidEmailImpl() : super._();
-
-  @override
-  String toString() {
-    return 'AuthFailure.invalidEmail()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InvalidEmailImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
-    required TResult Function() invalidUser,
-    required TResult Function() userNotFound,
-    required TResult Function() wrongPassword,
-    required TResult Function() clientFailure,
-    required TResult Function() serverFailure,
-  }) {
-    return invalidEmail();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
-    TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
-    TResult? Function()? invalidUser,
-    TResult? Function()? userNotFound,
-    TResult? Function()? wrongPassword,
-    TResult? Function()? clientFailure,
-    TResult? Function()? serverFailure,
-  }) {
-    return invalidEmail?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
-    TResult Function()? invalidUser,
-    TResult Function()? userNotFound,
-    TResult Function()? wrongPassword,
-    TResult Function()? clientFailure,
-    TResult Function()? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (invalidEmail != null) {
-      return invalidEmail();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
-    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
-    required TResult Function(InvalidUser value) invalidUser,
-    required TResult Function(UserNotFound value) userNotFound,
-    required TResult Function(WrongPassword value) wrongPassword,
-    required TResult Function(ClientFailure value) clientFailure,
-    required TResult Function(ServerFailure value) serverFailure,
-  }) {
-    return invalidEmail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
-    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
-    TResult? Function(InvalidUser value)? invalidUser,
-    TResult? Function(UserNotFound value)? userNotFound,
-    TResult? Function(WrongPassword value)? wrongPassword,
-    TResult? Function(ClientFailure value)? clientFailure,
-    TResult? Function(ServerFailure value)? serverFailure,
-  }) {
-    return invalidEmail?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
-    TResult Function(InvalidUser value)? invalidUser,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(WrongPassword value)? wrongPassword,
-    TResult Function(ClientFailure value)? clientFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (invalidEmail != null) {
-      return invalidEmail(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class InvalidEmail extends AuthFailure {
-  const factory InvalidEmail() = _$InvalidEmailImpl;
-  const InvalidEmail._() : super._();
 }
 
 /// @nodoc
@@ -287,9 +136,7 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -302,9 +149,7 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -317,9 +162,7 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -336,9 +179,7 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -351,9 +192,7 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -366,9 +205,7 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
@@ -386,145 +223,6 @@ class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
 abstract class EmailAlreadyInUse extends AuthFailure {
   const factory EmailAlreadyInUse() = _$EmailAlreadyInUseImpl;
   const EmailAlreadyInUse._() : super._();
-}
-
-/// @nodoc
-abstract class _$$WeekPasswordImplCopyWith<$Res> {
-  factory _$$WeekPasswordImplCopyWith(
-          _$WeekPasswordImpl value, $Res Function(_$WeekPasswordImpl) then) =
-      __$$WeekPasswordImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$WeekPasswordImplCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$WeekPasswordImpl>
-    implements _$$WeekPasswordImplCopyWith<$Res> {
-  __$$WeekPasswordImplCopyWithImpl(
-      _$WeekPasswordImpl _value, $Res Function(_$WeekPasswordImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$WeekPasswordImpl extends WeekPassword {
-  const _$WeekPasswordImpl() : super._();
-
-  @override
-  String toString() {
-    return 'AuthFailure.weekPassword()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$WeekPasswordImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
-    required TResult Function() invalidUser,
-    required TResult Function() userNotFound,
-    required TResult Function() wrongPassword,
-    required TResult Function() clientFailure,
-    required TResult Function() serverFailure,
-  }) {
-    return weekPassword();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
-    TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
-    TResult? Function()? invalidUser,
-    TResult? Function()? userNotFound,
-    TResult? Function()? wrongPassword,
-    TResult? Function()? clientFailure,
-    TResult? Function()? serverFailure,
-  }) {
-    return weekPassword?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
-    TResult Function()? invalidUser,
-    TResult Function()? userNotFound,
-    TResult Function()? wrongPassword,
-    TResult Function()? clientFailure,
-    TResult Function()? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (weekPassword != null) {
-      return weekPassword();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
-    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
-    required TResult Function(InvalidUser value) invalidUser,
-    required TResult Function(UserNotFound value) userNotFound,
-    required TResult Function(WrongPassword value) wrongPassword,
-    required TResult Function(ClientFailure value) clientFailure,
-    required TResult Function(ServerFailure value) serverFailure,
-  }) {
-    return weekPassword(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
-    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
-    TResult? Function(InvalidUser value)? invalidUser,
-    TResult? Function(UserNotFound value)? userNotFound,
-    TResult? Function(WrongPassword value)? wrongPassword,
-    TResult? Function(ClientFailure value)? clientFailure,
-    TResult? Function(ServerFailure value)? serverFailure,
-  }) {
-    return weekPassword?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
-    TResult Function(InvalidUser value)? invalidUser,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(WrongPassword value)? wrongPassword,
-    TResult Function(ClientFailure value)? clientFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    required TResult orElse(),
-  }) {
-    if (weekPassword != null) {
-      return weekPassword(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WeekPassword extends AuthFailure {
-  const factory WeekPassword() = _$WeekPasswordImpl;
-  const WeekPassword._() : super._();
 }
 
 /// @nodoc
@@ -565,9 +263,7 @@ class _$InvalidUserImpl extends InvalidUser {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -580,9 +276,7 @@ class _$InvalidUserImpl extends InvalidUser {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -595,9 +289,7 @@ class _$InvalidUserImpl extends InvalidUser {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -614,9 +306,7 @@ class _$InvalidUserImpl extends InvalidUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -629,9 +319,7 @@ class _$InvalidUserImpl extends InvalidUser {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -644,9 +332,7 @@ class _$InvalidUserImpl extends InvalidUser {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
@@ -704,9 +390,7 @@ class _$UserNotFoundImpl extends UserNotFound {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -719,9 +403,7 @@ class _$UserNotFoundImpl extends UserNotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -734,9 +416,7 @@ class _$UserNotFoundImpl extends UserNotFound {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -753,9 +433,7 @@ class _$UserNotFoundImpl extends UserNotFound {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -768,9 +446,7 @@ class _$UserNotFoundImpl extends UserNotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -783,9 +459,7 @@ class _$UserNotFoundImpl extends UserNotFound {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
@@ -843,9 +517,7 @@ class _$WrongPasswordImpl extends WrongPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -858,9 +530,7 @@ class _$WrongPasswordImpl extends WrongPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -873,9 +543,7 @@ class _$WrongPasswordImpl extends WrongPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -892,9 +560,7 @@ class _$WrongPasswordImpl extends WrongPassword {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -907,9 +573,7 @@ class _$WrongPasswordImpl extends WrongPassword {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -922,9 +586,7 @@ class _$WrongPasswordImpl extends WrongPassword {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
@@ -982,9 +644,7 @@ class _$ClientFailureImpl extends ClientFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -997,9 +657,7 @@ class _$ClientFailureImpl extends ClientFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -1012,9 +670,7 @@ class _$ClientFailureImpl extends ClientFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -1031,9 +687,7 @@ class _$ClientFailureImpl extends ClientFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -1046,9 +700,7 @@ class _$ClientFailureImpl extends ClientFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -1061,9 +713,7 @@ class _$ClientFailureImpl extends ClientFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,
@@ -1121,9 +771,7 @@ class _$ServerFailureImpl extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() invalidEmail,
     required TResult Function() emailAlreadyInUse,
-    required TResult Function() weekPassword,
     required TResult Function() invalidUser,
     required TResult Function() userNotFound,
     required TResult Function() wrongPassword,
@@ -1136,9 +784,7 @@ class _$ServerFailureImpl extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? invalidEmail,
     TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? weekPassword,
     TResult? Function()? invalidUser,
     TResult? Function()? userNotFound,
     TResult? Function()? wrongPassword,
@@ -1151,9 +797,7 @@ class _$ServerFailureImpl extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? invalidEmail,
     TResult Function()? emailAlreadyInUse,
-    TResult Function()? weekPassword,
     TResult Function()? invalidUser,
     TResult Function()? userNotFound,
     TResult Function()? wrongPassword,
@@ -1170,9 +814,7 @@ class _$ServerFailureImpl extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(WeekPassword value) weekPassword,
     required TResult Function(InvalidUser value) invalidUser,
     required TResult Function(UserNotFound value) userNotFound,
     required TResult Function(WrongPassword value) wrongPassword,
@@ -1185,9 +827,7 @@ class _$ServerFailureImpl extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmail value)? invalidEmail,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(WeekPassword value)? weekPassword,
     TResult? Function(InvalidUser value)? invalidUser,
     TResult? Function(UserNotFound value)? userNotFound,
     TResult? Function(WrongPassword value)? wrongPassword,
@@ -1200,9 +840,7 @@ class _$ServerFailureImpl extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(WeekPassword value)? weekPassword,
     TResult Function(InvalidUser value)? invalidUser,
     TResult Function(UserNotFound value)? userNotFound,
     TResult Function(WrongPassword value)? wrongPassword,

@@ -38,7 +38,7 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> logout(BuildContext context) async {
+  Future<void> logout() async {
     await authFacade.signOut();
   }
 

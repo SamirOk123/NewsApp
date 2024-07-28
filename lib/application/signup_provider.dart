@@ -10,7 +10,6 @@ class SignupProvider extends ChangeNotifier {
   final AuthFacade authFacade;
 
   bool isSubmitting = false;
-
   String email = '';
   String password = '';
   String name = '';

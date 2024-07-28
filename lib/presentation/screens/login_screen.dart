@@ -1,16 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/application/login_provider.dart';
 import 'package:news_app/application/textfield_provider.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/helpers.dart';
-import 'package:news_app/presentation/screens/news_screen.dart';
-import 'package:news_app/presentation/screens/signup_screen.dart';
+import 'package:news_app/core/routes.gr.dart';
 import 'package:news_app/presentation/widgets/custom_button.dart';
 import 'package:news_app/presentation/widgets/custom_rich_text.dart';
 import 'package:news_app/presentation/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
+@RoutePage()
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
@@ -26,10 +27,9 @@ class LoginScreen extends StatelessWidget {
             (either) => either.fold(
               (failure) {
                 final errorMessage = failure.maybeMap(
-                  invalidEmail: (_) => "Invalid Email",
                   wrongPassword: (_) => "Wrong Password",
                   userNotFound: (_) => "User not found",
-                  invalidUser: (_) => "Invalid user",
+                  invalidUser: (_) => "User not found",
                   clientFailure: (_) => "Something went wrong",
                   serverFailure: (_) => "Something went wrong",
                   orElse: () => "Something went wrong",
@@ -41,10 +41,7 @@ class LoginScreen extends StatelessWidget {
               },
               (_) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const NewsScreen()),
-                    (Route<dynamic> route) => false,
-                  );
+                  context.router.replaceAll([const NewsRoute()]);
                 });
               },
             ),
@@ -75,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 192.h),
                       CustomTextField(
                         hintText: "Email",
-                        isVisible: textfieldProvider.isVisible,
+                        isVisible: false,
                         inputType: TextInputType.emailAddress,
                         onchanged: (value) {
                           loginProvider.emailChanged(email: value.trim());
@@ -124,11 +121,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {
                           Provider.of<LoginProvider>(context, listen: false)
                               .clearState();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignupScreen()),
-                          );
+                          context.router.replace(SignupRoute());
                         },
                       ),
                     ],

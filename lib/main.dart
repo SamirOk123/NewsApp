@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,9 +6,8 @@ import 'package:news_app/application/signup_provider.dart';
 import 'package:news_app/application/news_provider.dart';
 import 'package:news_app/application/textfield_provider.dart';
 import 'package:news_app/core/colors.dart';
+import 'package:news_app/core/routes.dart';
 import 'package:news_app/domain/di/injectable.dart';
-import 'package:news_app/presentation/screens/login_screen.dart';
-import 'package:news_app/presentation/screens/news_screen.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
@@ -24,6 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppRouter appRouter = AppRouter();
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       minTextAdapt: true,
@@ -44,7 +43,8 @@ class MyApp extends StatelessWidget {
               create: (context) => getIt<TextfieldProvider>(),
             ),
           ],
-          child: MaterialApp(
+          child: MaterialApp.router(
+            routerConfig: appRouter.config(),
             title: 'News App',
             theme: ThemeData(
               scaffoldBackgroundColor: kMistBlue,
@@ -63,22 +63,6 @@ class MyApp extends StatelessWidget {
                     height: 21.sp / 14.sp,
                     color: Colors.black),
               ),
-            ),
-            home: StreamBuilder(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Scaffold(
-                    body: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                } else if (snapshot.hasData) {
-                  return const NewsScreen();
-                } else {
-                  return LoginScreen();
-                }
-              },
             ),
             debugShowCheckedModeBanner: false,
           ),

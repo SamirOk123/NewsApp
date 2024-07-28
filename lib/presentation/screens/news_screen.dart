@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/application/login_provider.dart';
@@ -5,10 +6,10 @@ import 'package:news_app/application/news_provider.dart';
 import 'package:news_app/application/signup_provider.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/helpers.dart';
-import 'package:news_app/core/strings.dart';
-import 'package:news_app/presentation/screens/login_screen.dart';
+import 'package:news_app/core/routes.gr.dart';
 import 'package:provider/provider.dart';
 
+@RoutePage()
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
 
@@ -67,8 +68,6 @@ class NewsScreen extends StatelessWidget {
                         ?.copyWith(color: Colors.white),
                   ),
                   SizedBox(width: 8.w),
-
-                  //Todo:  Removje if not required
                   IconButton(
                     onPressed: () {
                       showDialog(
@@ -94,7 +93,7 @@ class NewsScreen extends StatelessWidget {
                                   Navigator.of(context).pop();
                                   Provider.of<LoginProvider>(context,
                                           listen: false)
-                                      .logout(context);
+                                      .logout();
                                   Provider.of<SignupProvider>(context,
                                           listen: false)
                                       .clearState();
@@ -102,11 +101,7 @@ class NewsScreen extends StatelessWidget {
                                           listen: false)
                                       .clearState();
 
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginScreen()),
-                                    (Route<dynamic> route) => false,
-                                  );
+                                  context.router.replaceAll([LoginRoute()]);
                                 },
                               ),
                             ],
@@ -201,13 +196,16 @@ class NewsScreen extends StatelessWidget {
                                     height: 119.h,
                                     width: 119.h,
                                     decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                              news?.urlToImage ?? kImageUrl,
-                                            ),
-                                            fit: BoxFit.cover)),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      image: DecorationImage(
+                                          image: news?.urlToImage != null
+                                              ? NetworkImage(news?.urlToImage)
+                                                  as ImageProvider<Object>
+                                              : const AssetImage(
+                                                      "assets/images/placeholder.png")
+                                                  as ImageProvider<Object>,
+                                          fit: BoxFit.cover),
+                                    ),
                                   ),
                                 ],
                               ),

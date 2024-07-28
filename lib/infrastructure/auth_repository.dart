@@ -7,8 +7,9 @@ import 'package:news_app/domain/core/auth_failures.dart';
 
 @LazySingleton(as: AuthFacade)
 class AuthRepository implements AuthFacade {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  AuthRepository(this._firestore, this._auth);
+  final FirebaseFirestore _firestore;
+  final FirebaseAuth _auth;
 
   @override
   Future<Either<AuthFailure, Unit>> login(
@@ -27,8 +28,6 @@ class AuthRepository implements AuthFacade {
         return left(const AuthFailure.wrongPassword());
       } else if (e.code == 'invalid-credential') {
         return left(const AuthFailure.invalidUser());
-      } else if (e.code == 'invalid-email') {
-        return left(const AuthFailure.invalidEmail());
       } else {
         return left(const AuthFailure.serverFailure());
       }
@@ -59,10 +58,6 @@ class AuthRepository implements AuthFacade {
     } on FirebaseException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
-      } else if (e.code == 'invalid-email') {
-        return left(const AuthFailure.invalidEmail());
-      } else if (e.code == 'weak-password') {
-        return left(const AuthFailure.invalidEmail());
       } else {
         return left(const AuthFailure.serverFailure());
       }

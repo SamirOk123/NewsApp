@@ -1,16 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/application/signup_provider.dart';
 import 'package:news_app/application/textfield_provider.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/helpers.dart';
-import 'package:news_app/presentation/screens/login_screen.dart';
-import 'package:news_app/presentation/screens/news_screen.dart';
+import 'package:news_app/core/routes.gr.dart';
 import 'package:news_app/presentation/widgets/custom_button.dart';
 import 'package:news_app/presentation/widgets/custom_rich_text.dart';
 import 'package:news_app/presentation/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
+@RoutePage()
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
@@ -26,9 +27,7 @@ class SignupScreen extends StatelessWidget {
             (either) => either.fold(
               (failure) {
                 final errorMessage = failure.maybeMap(
-                  invalidEmail: (_) => "Invalid emai or password",
                   emailAlreadyInUse: (_) => "Email already in use",
-                  weekPassword: (_) => "Weak password",
                   invalidUser: (_) => "Invalid user",
                   clientFailure: (_) => "Something went wrong",
                   serverFailure: (_) => "Something went wrong",
@@ -41,10 +40,7 @@ class SignupScreen extends StatelessWidget {
               },
               (_) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const NewsScreen()),
-                    (Route<dynamic> route) => false,
-                  );
+                  context.router.replaceAll([const NewsRoute()]);
                 });
               },
             ),
@@ -76,7 +72,7 @@ class SignupScreen extends StatelessWidget {
                       SizedBox(height: 150.h),
                       CustomTextField(
                         hintText: "Name",
-                        isVisible: textfieldProvider.isVisible,
+                        isVisible: false,
                         validator: (value) => textfieldProvider.validator(
                             value, "Name is required"),
                         onchanged: (value) {
@@ -86,7 +82,7 @@ class SignupScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
                       CustomTextField(
                         hintText: "Email",
-                        isVisible: textfieldProvider.isVisible,
+                        isVisible: false,
                         inputType: TextInputType.emailAddress,
                         validator: (value) =>
                             textfieldProvider.emailValidator(value),
@@ -134,11 +130,7 @@ class SignupScreen extends StatelessWidget {
                           onTap: () {
                             Provider.of<SignupProvider>(context, listen: false)
                                 .clearState();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
-                            );
+                            context.router.replace(LoginRoute());
                           }),
                     ],
                   ),

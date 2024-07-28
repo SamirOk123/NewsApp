@@ -12,7 +12,9 @@ import 'package:news_app/domain/news_facade.dart';
 
 @LazySingleton(as: NewsFacade)
 class NewsRepository implements NewsFacade {
-  final _remoteConfig = FirebaseRemoteConfig.instance;
+  NewsRepository(this._remoteConfig);
+  final FirebaseRemoteConfig _remoteConfig;
+
   @override
   Future<Either<MainFailure, News>> getNews(
       {required String countryCode}) async {
@@ -35,7 +37,7 @@ class NewsRepository implements NewsFacade {
       getCountryCodeFromRemoteConfig() async {
     try {
       await _remoteConfig.setDefaults({
-        "country_code": "in",
+        "country_code": "us",
       });
       await _remoteConfig.setConfigSettings(RemoteConfigSettings(
           fetchTimeout: const Duration(seconds: 10),
