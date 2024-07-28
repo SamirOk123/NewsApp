@@ -2,11 +2,13 @@ class News {
   String? status;
   int? totalResults;
   List<Articles>? articles;
+  String? message;
 
   News({this.status, this.totalResults, this.articles});
 
   News.fromJson(Map<String, dynamic> json) {
     status = json["status"];
+    message = json["message"];
     totalResults = json["totalResults"];
     articles = json["articles"] == null
         ? null

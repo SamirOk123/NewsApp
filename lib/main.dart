@@ -2,11 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/application/login_provider.dart';
+import 'package:news_app/application/signup_provider.dart';
 import 'package:news_app/application/news_provider.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/domain/di/injectable.dart';
-import 'package:news_app/presentation/news_screen.dart';
-import 'package:news_app/presentation/signup_screen.dart';
+import 'package:news_app/presentation/screens/login_screen.dart';
+import 'package:news_app/presentation/screens/news_screen.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
@@ -28,8 +30,14 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider(
+            ChangeNotifierProvider<NewsProvider>(
               create: (context) => getIt<NewsProvider>(),
+            ),
+            ChangeNotifierProvider<SignupProvider>(
+              create: (context) => getIt<SignupProvider>(),
+            ),
+            ChangeNotifierProvider<LoginProvider>(
+              create: (context) => getIt<LoginProvider>(),
             ),
           ],
           child: MaterialApp(
@@ -63,7 +71,7 @@ class MyApp extends StatelessWidget {
                 } else if (snapshot.hasData) {
                   return const NewsScreen();
                 } else {
-                  return SignupScreen();
+                  return const LoginScreen();
                 }
               },
             ),

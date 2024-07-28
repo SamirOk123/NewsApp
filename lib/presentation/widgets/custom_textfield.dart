@@ -6,16 +6,16 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
-    required this.controller,
+    this.onchanged,
   });
 
   final String hintText;
-  final TextEditingController controller;
+  final void Function(String)? onchanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
+      onChanged: onchanged,
       decoration: InputDecoration(
         border: InputBorder.none,
         filled: true,
