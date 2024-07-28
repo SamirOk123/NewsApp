@@ -26,7 +26,6 @@ class NewsRepository implements NewsFacade {
         return left(const MainFailure.serverFailure());
       }
     } catch (e) {
-      print(e.toString());
       return left(const MainFailure.clientFailure());
     }
   }

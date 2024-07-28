@@ -21,48 +21,52 @@ class NewsProvider extends ChangeNotifier {
       const None();
 
   Future<void> getNews() async {
+    _setLoadingState();
+    final countryCodeResult = await newsFacade.getCountryCodeFromRemoteConfig();
+
+    countryCodeResult.fold(
+      (failure) => _handleCountryCodeFailure(failure),
+      (countryCode) => _handleCountryCodeSuccess(countryCode),
+    );
+  }
+
+  void _setLoadingState() {
     isLoading = true;
-    newsFailureOrSuccess = const None();
+    isError = false;
     notifyListeners();
-    final Either<RemoteConfigureFailure, String> countryCodeOption =
-        await newsFacade.getCountryCodeFromRemoteConfig();
+  }
 
-    countryCodeOption.fold((failure) async {
-      isLoading = false;
-      countryCodeFailureOrSuccess = Some(left(failure));
-      notifyListeners();
-      final Either<MainFailure, News> newsOption =
-          await newsFacade.getNews(countryCode: countryCode);
+  void _handleCountryCodeFailure(RemoteConfigureFailure failure) async {
+    isLoading = false;
+    countryCodeFailureOrSuccess = Some(left(failure));
+    notifyListeners();
+    await _fetchNews();
+  }
 
-      newsOption.fold((failure) {
-        isLoading = false;
-        newsFailureOrSuccess = Some(left(failure));
-        notifyListeners();
-      }, (success) {
-        isLoading = false;
-        news = success;
-        newsFailureOrSuccess = Some(right(success));
-        notifyListeners();
-      });
-    }, (success) async {
-      countryCode = success;
-      countryCodeFailureOrSuccess = Some(right(success));
-      notifyListeners();
-      final Either<MainFailure, News> newsOption =
-          await newsFacade.getNews(countryCode: countryCode);
+  void _handleCountryCodeSuccess(String countryCode) async {
+    this.countryCode = countryCode;
+    countryCodeFailureOrSuccess = Some(right(countryCode));
+    notifyListeners();
+    await _fetchNews();
+  }
 
-      newsOption.fold((failure) {
+  Future<void> _fetchNews() async {
+    final newsOption = await newsFacade.getNews(countryCode: countryCode);
+
+    newsOption.fold(
+      (failure) {
         isError = true;
         isLoading = false;
         newsFailureOrSuccess = Some(left(failure));
         notifyListeners();
-      }, (success) {
+      },
+      (news) {
         isError = false;
         isLoading = false;
-        news = success;
-        newsFailureOrSuccess = Some(right(success));
+        this.news = news;
+        newsFailureOrSuccess = Some(right(news));
         notifyListeners();
-      });
-    });
+      },
+    );
   }
 }

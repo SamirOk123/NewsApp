@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/application/login_provider.dart';
 import 'package:news_app/application/signup_provider.dart';
 import 'package:news_app/application/news_provider.dart';
+import 'package:news_app/application/textfield_provider.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/domain/di/injectable.dart';
 import 'package:news_app/presentation/screens/login_screen.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<LoginProvider>(
               create: (context) => getIt<LoginProvider>(),
             ),
+            ChangeNotifierProvider<TextfieldProvider>(
+              create: (context) => getIt<TextfieldProvider>(),
+            ),
           ],
           child: MaterialApp(
             title: 'News App',
@@ -71,7 +75,7 @@ class MyApp extends StatelessWidget {
                 } else if (snapshot.hasData) {
                   return const NewsScreen();
                 } else {
-                  return const LoginScreen();
+                  return LoginScreen();
                 }
               },
             ),

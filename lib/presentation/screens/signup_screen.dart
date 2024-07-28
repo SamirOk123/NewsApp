@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/application/signup_provider.dart';
+import 'package:news_app/application/textfield_provider.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/helpers.dart';
 import 'package:news_app/presentation/screens/login_screen.dart';
@@ -11,7 +12,9 @@ import 'package:news_app/presentation/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  SignupScreen({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,63 +49,97 @@ class SignupScreen extends StatelessWidget {
               },
             ),
           );
+          final textfieldProvider =
+              Provider.of<TextfieldProvider>(context, listen: false);
+
           return Stack(
             children: [
               SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  children: [
-                    SizedBox(height: 70.h),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "MyNews",
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w700,
-                            color: kPrimaryColor,
-                            height: 30.sp / 20.sp),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 70.h),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "MyNews",
+                          style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w700,
+                              color: kPrimaryColor,
+                              height: 30.sp / 20.sp),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 150.h),
-                    CustomTextField(
-                      hintText: "Name",
-                      onchanged: (value) {
-                        signupProvider.nameChanged(name: value.trim());
-                      },
-                    ),
-                    SizedBox(height: 20.h),
-                    CustomTextField(
-                      hintText: "Email",
-                      onchanged: (value) {
-                        signupProvider.emailChanged(email: value.trim());
-                      },
-                    ),
-                    SizedBox(height: 20.h),
-                    CustomTextField(
-                      hintText: "Password",
-                      onchanged: (value) {
-                        signupProvider.passwordChanged(password: value.trim());
-                      },
-                    ),
-                    SizedBox(height: 250.h),
-                    CustomButton(
-                        label: 'Signup', onPressed: signupProvider.signup),
-                    SizedBox(height: 13.h),
-                    CustomRichText(
-                        regularText: 'Already have an account? ',
-                        clickableText: 'Login',
-                        onTap: () {
-                          Provider.of<SignupProvider>(context, listen: false)
-                              .clearState();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginScreen()),
-                          );
-                        }),
-                  ],
+                      SizedBox(height: 150.h),
+                      CustomTextField(
+                        hintText: "Name",
+                        isVisible: textfieldProvider.isVisible,
+                        validator: (value) => textfieldProvider.validator(
+                            value, "Name is required"),
+                        onchanged: (value) {
+                          signupProvider.nameChanged(name: value.trim());
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextField(
+                        hintText: "Email",
+                        isVisible: textfieldProvider.isVisible,
+                        inputType: TextInputType.emailAddress,
+                        validator: (value) =>
+                            textfieldProvider.emailValidator(value),
+                        onchanged: (value) {
+                          signupProvider.emailChanged(email: value.trim());
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+                      Consumer<TextfieldProvider>(
+                        builder: (context, textfieldProvider, child) =>
+                            CustomTextField(
+                          isVisible: textfieldProvider.isVisible,
+                          hintText: "Password",
+                          validator: (value) =>
+                              textfieldProvider.passwordValidator(value),
+                          trailing: IconButton(
+                            onPressed: () =>
+                                textfieldProvider.showHidePassword(),
+                            icon: Icon(!textfieldProvider.isVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                          onchanged: (value) {
+                            signupProvider.passwordChanged(
+                                password: value.trim());
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 230.h),
+                      CustomButton(
+                          label: 'Signup',
+                          onPressed: () {
+                            if (formKey.currentState?.validate() == true) {
+                              signupProvider.signup();
+                            } else {
+                              return;
+                            }
+                          }),
+                      SizedBox(height: 13.h),
+                      CustomRichText(
+                          regularText: 'Already have an account? ',
+                          clickableText: 'Login',
+                          onTap: () {
+                            Provider.of<SignupProvider>(context, listen: false)
+                                .clearState();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                            );
+                          }),
+                    ],
+                  ),
                 ),
               ),
               if (signupProvider.isSubmitting)
