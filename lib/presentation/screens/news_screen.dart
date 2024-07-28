@@ -53,6 +53,7 @@ class NewsScreen extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.near_me,
+                    color: Colors.white,
                     size: 15.sp,
                   ),
                   SizedBox(width: 8.w),
@@ -70,16 +71,47 @@ class NewsScreen extends StatelessWidget {
                   //Todo:  Removje if not required
                   IconButton(
                     onPressed: () {
-                      Provider.of<LoginProvider>(context, listen: false)
-                          .logout(context);
-                      Provider.of<SignupProvider>(context, listen: false)
-                          .clearState();
-                      Provider.of<LoginProvider>(context, listen: false)
-                          .clearState();
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Logout'),
+                            content:
+                                const Text('Are you sure you want to logout?'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text('Cancel'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: const Text(
+                                  'Logout',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Provider.of<LoginProvider>(context,
+                                          listen: false)
+                                      .logout(context);
+                                  Provider.of<SignupProvider>(context,
+                                          listen: false)
+                                      .clearState();
+                                  Provider.of<LoginProvider>(context,
+                                          listen: false)
+                                      .clearState();
 
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                        (Route<dynamic> route) => false,
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()),
+                                    (Route<dynamic> route) => false,
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        },
                       );
                     },
                     icon: const Icon(

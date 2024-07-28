@@ -49,7 +49,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               scaffoldBackgroundColor: kMistBlue,
               fontFamily: "Poppins",
-              useMaterial3: false,
+              useMaterial3: true,
+              colorSchemeSeed: kPrimaryColor,
               textTheme: TextTheme(
                 displayLarge: TextStyle(
                     fontSize: 14.sp,

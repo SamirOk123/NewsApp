@@ -25,6 +25,8 @@ class AuthRepository implements AuthFacade {
         return left(const AuthFailure.userNotFound());
       } else if (e.code == 'wrong-password') {
         return left(const AuthFailure.wrongPassword());
+      } else if (e.code == 'invalid-credential') {
+        return left(const AuthFailure.invalidUser());
       } else if (e.code == 'invalid-email') {
         return left(const AuthFailure.invalidEmail());
       } else {

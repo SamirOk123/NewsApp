@@ -97,6 +97,8 @@ class LoginScreen extends StatelessWidget {
                             icon: Icon(!textfieldProvider.isVisible
                                 ? Icons.visibility_off
                                 : Icons.visibility),
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
                           ),
                           onchanged: (value) {
                             loginProvider.passwordChanged(
